@@ -4,7 +4,14 @@
 		<TargetFramework>net10.0</TargetFramework>
 		<GenerateDocumentationFile>False</GenerateDocumentationFile>
 		<Configurations>Debug;Release;Debug_TestFolder</Configurations>
+		<RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Services\**" />
+	  <EmbeddedResource Remove="Services\**" />
+	  <None Remove="Services\**" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="作者.7z" />
@@ -37,10 +44,6 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.7" />
 		<PackageReference Include="SharpCompress" Version="0.40.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Services\" />
 	</ItemGroup>
 
 	<ItemGroup>
