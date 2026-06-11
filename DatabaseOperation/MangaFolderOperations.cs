@@ -1,7 +1,7 @@
-﻿using EroMangaDatabase.Entities;
+﻿using Database.Entities;
 using System.Linq;
 
-namespace EroMangaDatabase
+namespace Database
 {
     public partial class BasicController
     {

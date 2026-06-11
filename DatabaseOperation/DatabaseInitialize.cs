@@ -1,13 +1,16 @@
-﻿using EroMangaDatabase.Entities;
+﻿using Database.Entities;
+using Database.EntityFactory;
+
 using SharpCompress.Archives;
 using SharpCompress.Readers;
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EroMangaDatabase
+namespace Database
 {
     public partial class BasicController
     {
@@ -46,7 +49,7 @@ namespace EroMangaDatabase
                 {
                     string tagname = list[0];
                     list.RemoveAt(0);
-                    var one = EntityFactory.TagCategoryFactory.Creat(tagname, list);
+                    var one = TagCategoryFactory.Creat(tagname, list);
                     database.TagCategorys.Add(one);
                 }
             }
@@ -64,7 +67,7 @@ namespace EroMangaDatabase
                 Password = "F9429775-6EAB-48FC-9F8A-4E079F90AF3F"
             };
             var stream = new MemoryStream();
-            var archive = ArchiveFactory.Open(zip, readerOptions);
+            var archive = ArchiveFactory.OpenArchive(zip, readerOptions);
 
             foreach (var item in archive.Entries)
             {

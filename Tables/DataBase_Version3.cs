@@ -1,18 +1,19 @@
-﻿using EroMangaDatabase.Entities;
+﻿using Database.Entities;
+
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
-namespace EroMangaDatabase.Tables
+namespace Database.Tables
 {
     /// <summary>
     /// 数据库类
     /// </summary>
-    public class DataBase_Version3 : DbContext
+    /// <remarks>
+    ///
+    /// </remarks>
+    /// <param name="connectionString"></param>
+    public class DataBase_Version3 (string connectionString) : DbContext
     {
-        /// <summary>
-        /// 连接字符串
-        /// </summary>
-        private readonly string ConnectionString;
 
         /// <summary>
         /// 存储用户添加的不显示的图片的数据库表
@@ -40,23 +41,14 @@ namespace EroMangaDatabase.Tables
         public DbSet<UWPAccessIStorage> UWPAccessIStorages { set; get; }
 
         /// <summary>
-        ///
-        /// </summary>
-        /// <param name="connectionString"></param>
-        public DataBase_Version3(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
-
-        /// <summary>
         /// 配置数据库
         /// </summary>
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            Debug.WriteLine(ConnectionString);
-            optionsBuilder.UseSqlite(ConnectionString);
+            Debug.WriteLine(connectionString);
+            optionsBuilder.UseSqlite(connectionString);
         }
     }
 }

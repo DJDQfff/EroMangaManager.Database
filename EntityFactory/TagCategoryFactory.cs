@@ -1,7 +1,8 @@
-﻿using EroMangaDatabase.Entities;
+﻿using Database.Entities;
+
 using System.Collections.Generic;
 
-namespace EroMangaDatabase.EntityFactory
+namespace Database.EntityFactory
 {
     /// <summary>
     /// TagCategory工厂方法

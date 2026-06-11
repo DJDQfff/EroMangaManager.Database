@@ -1,8 +1,10 @@
-﻿using EroMangaDatabase.Tables;
+﻿using Database.Tables;
+
+
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace EroMangaDatabase
+namespace Database
 {
     /// <summary>
     /// 将DBContext实例包装在这个单例类里面
@@ -12,7 +14,7 @@ namespace EroMangaDatabase
         /// <summary>
         /// 单一实例
         /// </summary>
-        public static BasicController DatabaseController;
+        public static readonly BasicController DatabaseController;
 
         /// <summary>
         ///
@@ -43,10 +45,6 @@ namespace EroMangaDatabase
         /// <summary>
         /// 释放数据库资源
         /// </summary>
-        public void Dispose()
-        {
-            database.Dispose();
-            GC.SuppressFinalize(database);
-        }
+        public void Dispose () => database.Dispose();//GC.SuppressFinalize(database);
     }
 }

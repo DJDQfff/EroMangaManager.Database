@@ -1,4 +1,4 @@
-﻿namespace EroMangaDatabase.Tables
+﻿namespace Database.Tables
 {
     /// <summary>
     /// 配置内容

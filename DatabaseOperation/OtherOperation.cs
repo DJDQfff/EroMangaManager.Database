@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EroMangaDatabase
+namespace Database
 {
     public partial class BasicController
     {
@@ -17,7 +17,7 @@ namespace EroMangaDatabase
 
             Dictionary<string, string> keyValuePairs = [];
 
-            tags = tags.Distinct().ToArray();           // 去重
+            tags = [.. tags.Distinct()];           // 去重
 
             foreach (var tag in tags)
             {

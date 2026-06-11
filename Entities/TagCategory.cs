@@ -1,9 +1,12 @@
 ﻿using CommonLibrary;
+
+using Database.Entities;
+
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EroMangaDatabase.Entities
+namespace Database.Entities
 {
     /// <summary>
     /// tag分类

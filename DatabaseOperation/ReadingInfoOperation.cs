@@ -1,9 +1,10 @@
-﻿using EroMangaDatabase.Entities;
+﻿using Database.Entities;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EroMangaDatabase
+namespace Database
 {
     public partial class BasicController
     {

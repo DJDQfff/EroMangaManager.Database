@@ -1,4 +1,4 @@
-﻿namespace EroMangaDatabase.Entities
+﻿namespace Database.Entities
 {
     /// <summary>
     /// 添加的文件夹

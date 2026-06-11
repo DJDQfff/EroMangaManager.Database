@@ -1,4 +1,4 @@
-﻿namespace EroMangaDatabase.Entities
+﻿namespace Database.Entities
 {
     /// <summary> 预设漫画Tag种类 </summary>
 

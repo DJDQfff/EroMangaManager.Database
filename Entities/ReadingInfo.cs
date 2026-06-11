@@ -1,4 +1,4 @@
-﻿namespace EroMangaDatabase.Entities
+﻿namespace Database.Entities
 {
     /// <summary>
     /// 阅读状态信息，用来存储对一本漫画的观看信息。

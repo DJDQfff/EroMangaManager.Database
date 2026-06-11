@@ -1,10 +1,12 @@
-﻿using EroMangaDatabase.Entities;
-using EroMangaDatabase.EntityFactory;
+﻿using Database.EntityFactory;
+
+using Database.Entities;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EroMangaDatabase
+namespace Database
 {
     public partial class BasicController
     {
@@ -33,10 +35,7 @@ namespace EroMangaDatabase
         /// 获取所有tagcategory分类，只包含分类，不包含分类的具体
         /// </summary>
         /// <returns></returns>
-        public List<string> TagCategory_Query()
-        {
-            return database.TagCategorys.Select(x => x.CategoryName).ToList();
-        }
+        public List<string> TagCategory_Query () => [.. database.TagCategorys.Select(x => x.CategoryName)];
 
         /// <summary>
         /// 查询单一TagKeywords的所有识别关键词
@@ -126,7 +125,7 @@ namespace EroMangaDatabase
         public async Task TagCategory_MoveMulti(IDictionary<string, string> targetpairs)
         {
             var keywordContainInfo = DatabaseController.TagCategory_SearchiKeywordsMulti(
-                targetpairs.Keys.ToArray()
+                [.. targetpairs.Keys]
             );
 
             foreach (var target in targetpairs)
