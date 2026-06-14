@@ -62,10 +62,10 @@ namespace Database.Migrations
                     b.Property<bool>("IsContentTranslated")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("MangaName")
+                    b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MangaName_Translated")
+                    b.Property<string>("Name_Translated")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("PageAmount")

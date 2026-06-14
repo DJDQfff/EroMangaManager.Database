@@ -51,15 +51,15 @@ namespace Database
         }
 
         /// <summary>
-        /// ReadingInfo表更新MangaName属性
+        /// ReadingInfo表更新Name属性
         /// </summary>
         /// <param name="readinginfo"></param>
         /// <param name="manganame"></param>
         /// <returns></returns>
-        public async Task ReadingInfo_UpdateMangaName(ReadingInfo readinginfo, string manganame)
+        public async Task ReadingInfo_UpdateName(ReadingInfo readinginfo, string manganame)
         {
             var info = database.ReadingInfos.SingleOrDefault(n => n.AbsolutePath == readinginfo.AbsolutePath);
-            info.MangaName = manganame;
+            info.Name = manganame;
             database.Update(info);
             await database.SaveChangesAsync();
         }
@@ -69,13 +69,13 @@ namespace Database
         /// </summary>
         /// <param name="tuples"></param>
         /// <returns></returns>
-        public async Task ReadingInfo_MultiTranslateMangaName(IEnumerable<(string path, string translatedname)> tuples)
+        public async Task ReadingInfo_MultiTranslateName(IEnumerable<(string path, string translatedname)> tuples)
         {
             var info = database.ReadingInfos.ToList();
             foreach (var (path, translatedname) in tuples)
             {
                 var a = info.SingleOrDefault(n => n.AbsolutePath == path);
-                a.MangaName_Translated = translatedname;
+                a.Name_Translated = translatedname;
             }
             database.UpdateRange(info);
             await database.SaveChangesAsync();

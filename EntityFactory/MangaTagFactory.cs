@@ -33,7 +33,7 @@
 
 //            var tags = mangaTagInfo.DisplayName.SplitAndParser();
 
-//            mangaTagInfo.MangaName = tags[0];
+//            mangaTagInfo.Name = tags[0];
 
 //            mangaTagInfo.ParseTags(tags);
 

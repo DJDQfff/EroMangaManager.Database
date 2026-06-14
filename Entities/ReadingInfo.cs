@@ -16,12 +16,12 @@
         /// <summary>
         /// 本子名，剔除诸多Tag之后的名称（一般未包含在括号里的）
         /// </summary>
-        public string MangaName { set; get; }
+        public string Name { set; get; }
 
         /// <summary>
-        /// 翻译过后的MangaName
+        /// 翻译过后的Name
         /// </summary>
-        public string MangaName_Translated { set; get; }
+        public string Name_Translated { set; get; }
 
         /// <summary> 漫画总页数 </summary>
         public int PageAmount { get; set; }

@@ -51,8 +51,8 @@ namespace Database.Migrations
                             .Column<int>(nullable: false)
                             .Annotation("Sqlite:Autoincrement", true),
                         AbsolutePath = table.Column<string>(nullable: true),
-                        MangaName = table.Column<string>(nullable: true),
-                        MangaName_Translated = table.Column<string>(nullable: true),
+                        Name = table.Column<string>(nullable: true),
+                        Name_Translated = table.Column<string>(nullable: true),
                         PageAmount = table.Column<int>(nullable: false),
                         ReadingPosition = table.Column<int>(nullable: false),
                         TagsAddedByUser = table.Column<string>(nullable: true),
