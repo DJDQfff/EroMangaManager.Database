@@ -9,7 +9,7 @@ namespace Database
     /// <summary>
     /// 将DBContext实例包装在这个单例类里面
     /// </summary>
-    public partial class BasicController : IDisposable
+    public partial class BasicController 
     {
         /// <summary>
         /// 单一实例
@@ -42,9 +42,6 @@ namespace Database
             database.Database.Migrate();
         }
 
-        /// <summary>
-        /// 释放数据库资源
-        /// </summary>
-        public void Dispose () => database.Dispose();//GC.SuppressFinalize(database);
+
     }
 }
