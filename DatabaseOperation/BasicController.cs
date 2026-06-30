@@ -2,14 +2,13 @@
 
 
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace Database
 {
     /// <summary>
     /// 将DBContext实例包装在这个单例类里面
     /// </summary>
-    public partial class BasicController 
+    public partial class BasicController
     {
         /// <summary>
         /// 单一实例
@@ -21,7 +20,7 @@ namespace Database
         /// </summary>
         public DataBase_Version3 database;
 
-        static BasicController()
+        static BasicController ()
         {
             DatabaseController = new BasicController();
         }
@@ -29,7 +28,7 @@ namespace Database
         /// <summary>
         /// 私有构造函数
         /// </summary>
-        private BasicController()
+        private BasicController ()
         {
             database = new DataBase_Version3(DatabaseConfig.ConnectingString);
         }
@@ -37,7 +36,7 @@ namespace Database
         /// <summary>
         /// 数据库版本迁移
         /// </summary>
-        public void Migrate()
+        public void Migrate ()
         {
             database.Database.Migrate();
         }

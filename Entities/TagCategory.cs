@@ -1,7 +1,5 @@
 ﻿using CommonLibrary;
 
-using Database.Entities;
-
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -29,7 +27,7 @@ namespace Database.Entities
             set
             {
                 name = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CategoryName)));
+                PropertyChanged?.Invoke(this , new PropertyChangedEventArgs(nameof(CategoryName)));
             }
         }
 

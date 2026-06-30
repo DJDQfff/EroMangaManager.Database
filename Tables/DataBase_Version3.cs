@@ -1,6 +1,7 @@
 ﻿using Database.Entities;
 
 using Microsoft.EntityFrameworkCore;
+
 using System.Diagnostics;
 
 namespace Database.Tables
@@ -44,7 +45,7 @@ namespace Database.Tables
         /// 配置数据库
         /// </summary>
         /// <param name="optionsBuilder"></param>
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             Debug.WriteLine(connectionString);

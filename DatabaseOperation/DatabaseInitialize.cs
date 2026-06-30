@@ -15,7 +15,7 @@ namespace Database
     public partial class BasicController
     {
         /// <summary> 并初始化默认数据 </summary>
-        public async Task InitializeDefaultData()
+        public async Task InitializeDefaultData ()
         {
             // 初始化数据
             List<string>[] vs =
@@ -49,14 +49,14 @@ namespace Database
                 {
                     string tagname = list[0];
                     list.RemoveAt(0);
-                    var one = TagCategoryFactory.Creat(tagname, list);
+                    var one = TagCategoryFactory.Creat(tagname , list);
                     database.TagCategorys.Add(one);
                 }
             }
             await database.SaveChangesAsync();
         }
 
-        public string LoadCategoryFromAssembly(string enbededResourceFileName)
+        public string LoadCategoryFromAssembly (string enbededResourceFileName)
         {
             var assembly = typeof(BasicController).Assembly;
             string assemblyName = assembly.GetName().Name; // "EroMangaDatabase" 或其他实际项目名
@@ -67,7 +67,7 @@ namespace Database
                 Password = "F9429775-6EAB-48FC-9F8A-4E079F90AF3F"
             };
             var stream = new MemoryStream();
-            var archive = ArchiveFactory.OpenArchive(zip, readerOptions);
+            var archive = ArchiveFactory.OpenArchive(zip , readerOptions);
 
             foreach (var item in archive.Entries)
             {

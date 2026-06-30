@@ -1,6 +1,4 @@
-﻿using Database.Entities;
-
-namespace Database.Entities;
+﻿namespace Database.Entities;
 
 /// <summary>
 /// uwp访问权限存储
