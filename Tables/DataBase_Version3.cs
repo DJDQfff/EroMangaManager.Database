@@ -2,54 +2,22 @@
 
 using Microsoft.EntityFrameworkCore;
 
-using System.Diagnostics;
-
 namespace Database.Tables
 {
     /// <summary>
     /// 数据库类
     /// </summary>
-    /// <remarks>
-    ///
-    /// </remarks>
-    /// <param name="connectionString"></param>
-    public class DataBase_Version3 (string connectionString) : DbContext
+    public class DataBase_Version3 (DbContextOptions<DataBase_Version3> options) : DbContext(options)
     {
 
-        /// <summary>
-        /// 存储用户添加的不显示的图片的数据库表
-        /// </summary>
+        // 你的 DbSet 保持不变
         public DbSet<FilteredImage> FilteredImages { set; get; }
-
-        /// <summary>
-        /// UniqueTagInRelation数据表
-        /// </summary>
         public DbSet<TagCategory> TagCategorys { set; get; }
-
-        /// <summary>
-        /// ReadingInfo数据表
-        /// </summary>
         public DbSet<ReadingInfo> ReadingInfos { set; get; }
-
-        /// <summary>
-        ///访问文件夹存储
-        /// </summary>
         public DbSet<MangaFolder> MangaFolders { set; get; }
-
-        /// <summary>
-        ///访问文件夹存储
-        /// </summary>
         public DbSet<UWPAccessIStorage> UWPAccessIStorages { set; get; }
 
-        /// <summary>
-        /// 配置数据库
-        /// </summary>
-        /// <param name="optionsBuilder"></param>
-        protected override void OnConfiguring (DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            Debug.WriteLine(connectionString);
-            optionsBuilder.UseSqlite(connectionString);
-        }
+        // 注意：使用 AddDbContextFactory 时，OnConfiguring 方法可以直接删除！
+        // 因为连接字符串已经在 Program.cs / App.xaml.cs 的 AddDbContextFactory 中配置好了
     }
 }

@@ -4,92 +4,97 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Database
+namespace Database;
+
+public partial class DatabaseController
 {
-    public partial class BasicController
+    /// <summary>
+    /// ReadingInof表添加多个
+    /// </summary>
+    /// <param name="ts"></param>
+    /// <returns></returns>
+    public async Task ReadingInfo_AddMulti (IEnumerable<ReadingInfo> ts)
     {
-        /// <summary>
-        /// ReadingInof表添加多个
-        /// </summary>
-        /// <param name="ts"></param>
-        /// <returns></returns>
-        public async Task ReadingInfo_AddMulti (IEnumerable<ReadingInfo> ts)
+        using var database = contextFactory.CreateDbContext();
+        await database.AddRangeAsync(ts);
+        await database.SaveChangesAsync();
+    }
+
+    /// <summary>
+    /// ReadingInfo移除单个
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public async Task ReadingInfo_RemoveSingle (string path)
+    {
+        using var database = contextFactory.CreateDbContext();
+        var info = database.ReadingInfos.SingleOrDefault(n => n.AbsolutePath == path);
+        if (info != null)
         {
-            await database.AddRangeAsync(ts);
+            database.Remove(info);
             await database.SaveChangesAsync();
         }
+    }
 
-        /// <summary>
-        /// ReadingInfo移除单个
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public async Task ReadingInfo_RemoveSingle (string path)
+    /// <summary>
+    /// ReadingInfo更新单个
+    /// </summary>
+    /// <param name="t"></param>
+    /// <returns></returns>
+    public async Task ReadingInfo_UpdateSingle (ReadingInfo t)
+    {
+        using var database = contextFactory.CreateDbContext();
+        var info = database.ReadingInfos.SingleOrDefault(n => n.AbsolutePath == t.AbsolutePath);
+        if (info != null)
         {
-            var info = database.ReadingInfos.SingleOrDefault(n => n.AbsolutePath == path);
-            if (info != null)
-            {
-                database.Remove(info);
-                await database.SaveChangesAsync();
-            }
-        }
-
-        /// <summary>
-        /// ReadingInfo更新单个
-        /// </summary>
-        /// <param name="t"></param>
-        /// <returns></returns>
-        public async Task ReadingInfo_UpdateSingle (ReadingInfo t)
-        {
-            var info = database.ReadingInfos.SingleOrDefault(n => n.AbsolutePath == t.AbsolutePath);
-            if (info != null)
-            {
-                database.Remove(info);
-                database.Add(info);
-                await database.SaveChangesAsync();
-            }
-        }
-
-        /// <summary>
-        /// ReadingInfo表更新Name属性
-        /// </summary>
-        /// <param name="readinginfo"></param>
-        /// <param name="manganame"></param>
-        /// <returns></returns>
-        public async Task ReadingInfo_UpdateName (ReadingInfo readinginfo , string manganame)
-        {
-            var info = database.ReadingInfos.SingleOrDefault(n => n.AbsolutePath == readinginfo.AbsolutePath);
-            info.Name = manganame;
-            database.Update(info);
+            database.Remove(info);
+            database.Add(info);
             await database.SaveChangesAsync();
         }
+    }
 
-        /// <summary>
-        /// ReadingInfo表修改多个翻译本子名属性
-        /// </summary>
-        /// <param name="tuples"></param>
-        /// <returns></returns>
-        public async Task ReadingInfo_MultiTranslateName (IEnumerable<(string path , string translatedname)> tuples)
+    /// <summary>
+    /// ReadingInfo表更新Name属性
+    /// </summary>
+    /// <param name="readinginfo"></param>
+    /// <param name="manganame"></param>
+    /// <returns></returns>
+    public async Task ReadingInfo_UpdateName (ReadingInfo readinginfo , string manganame)
+    {
+        using var database = contextFactory.CreateDbContext();
+        var info = database.ReadingInfos.SingleOrDefault(n => n.AbsolutePath == readinginfo.AbsolutePath);
+        info.Name = manganame;
+        database.Update(info);
+        await database.SaveChangesAsync();
+    }
+
+    /// <summary>
+    /// ReadingInfo表修改多个翻译本子名属性
+    /// </summary>
+    /// <param name="tuples"></param>
+    /// <returns></returns>
+    public async Task ReadingInfo_MultiTranslateName (IEnumerable<(string path , string translatedname)> tuples)
+    {
+        using var database = contextFactory.CreateDbContext();
+        var info = database.ReadingInfos.ToList();
+        foreach (var (path , translatedname) in tuples)
         {
-            var info = database.ReadingInfos.ToList();
-            foreach (var (path , translatedname) in tuples)
-            {
-                var a = info.SingleOrDefault(n => n.AbsolutePath == path);
-                a.Name_Translated = translatedname;
-            }
-            database.UpdateRange(info);
-            await database.SaveChangesAsync();
+            var a = info.SingleOrDefault(n => n.AbsolutePath == path);
+            a.Name_Translated = translatedname;
         }
+        database.UpdateRange(info);
+        await database.SaveChangesAsync();
+    }
 
-        /// <summary>
-        /// ReadingInfo表查询所有
-        /// </summary>
-        /// <returns></returns>
-        public ReadingInfo[] ReadingInfo_QueryAll ()
-        {
-            var infos = database.ReadingInfos.ToArray();
+    /// <summary>
+    /// ReadingInfo表查询所有
+    /// </summary>
+    /// <returns></returns>
+    public ReadingInfo[] ReadingInfo_QueryAll ()
+    {
+        using var database = contextFactory.CreateDbContext();
+        var infos = database.ReadingInfos.ToArray();
 
-            return infos;
-        }
+        return infos;
     }
 }
