@@ -1,5 +1,4 @@
-﻿using Database.Entities;
-using Database.Tables;
+﻿using Database.Tables;
 
 
 using Microsoft.EntityFrameworkCore;
@@ -14,23 +13,6 @@ namespace Database;
 /// </remarks>
 public partial class DatabaseController (IDbContextFactory<DataBase_Version3> contextFactory)
 {
-    public DbSet<FilteredImage> FilteredImages
-    {
-        get
-        {
-            using var database = contextFactory.CreateDbContext();
-            return database.FilteredImages;
-        }
-    }
-    public DbSet<TagCategory> TagCategorys
-    {
-        get
-        {
-            using var database = contextFactory.CreateDbContext();
-            return database.TagCategorys;
-
-        }
-    }
     /// <summary>
     /// 数据库版本迁移
     /// </summary>

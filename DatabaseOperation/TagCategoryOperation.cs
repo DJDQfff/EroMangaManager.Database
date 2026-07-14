@@ -14,6 +14,15 @@ public partial class DatabaseController
     /// <summary>
     /// 查询所有TagKeywords的所有识别关键词
     /// </summary>
+    public TagCategory[] TagCategoryArray ()
+    {
+
+        using var database = contextFactory.CreateDbContext();
+        return [.. database.TagCategorys];
+
+
+    }
+
     /// <returns>字典，第一项为TagName，第二项为Kwywords</returns>
     public Dictionary<string , string[]> TagCategory_QueryAll ()
     {

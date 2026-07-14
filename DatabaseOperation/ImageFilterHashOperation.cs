@@ -8,6 +8,12 @@ namespace Database;
 
 public partial class DatabaseController
 {
+    public FilteredImage[] FilteredImageArray ()
+    {
+        using var database = contextFactory.CreateDbContext();
+        return [.. database.FilteredImages];
+    }
+
     /// <summary>
     /// 统计符合Length条件的个数
     /// </summary>
